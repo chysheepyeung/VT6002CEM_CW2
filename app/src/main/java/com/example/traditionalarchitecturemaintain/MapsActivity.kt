@@ -17,6 +17,7 @@ package com.example.traditionalarchitecturemaintain
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.DialogInterface
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
@@ -26,6 +27,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -45,6 +47,7 @@ import com.google.android.libraries.places.api.Places
 import com.google.android.libraries.places.api.model.Place
 import com.google.android.libraries.places.api.net.FindCurrentPlaceRequest
 import com.google.android.libraries.places.api.net.PlacesClient
+
 
 /**
  * An activity that displays a map showing the place at the device's current location.
@@ -368,8 +371,15 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             // Position the map's camera at the location of the marker.
             map?.moveCamera(CameraUpdateFactory.newLatLngZoom(markerLatLng,
                 DEFAULT_ZOOM.toFloat()))
+
+            //todo return the location back to order
+            val returnIntent = Intent()
+            returnIntent.putExtra("location", likelyPlaceAddresses[which])
+            setResult(RESULT_OK, returnIntent)
+            finish()
+//            Toast.makeText(this, "${likelyPlaceAddresses[which]}", Toast.LENGTH_SHORT).show()
         }
-        //todo return the location back to order
+
 
 
         // Display the dialog.
