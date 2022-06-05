@@ -18,9 +18,8 @@
 
     <EditText
         android:id="@+id/editTextTextMultiLine2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_width="334dp"
+        android:layout_height="0dp"
         android:ems="10"
         android:gravity="start|top"
         android:inputType="textMultiLine"
@@ -40,18 +39,18 @@
         android:id="@+id/buttonSubmit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="submit"
+        android:layout_marginBottom="80dp"
+        android:onClick="submitOrder"
         android:text="Submit"
         android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="557dp" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/editTextTextMultiLine"
-        android:layout_width="221dp"
-        android:layout_height="47dp"
-        android:layout_marginTop="12dp"
+        android:layout_width="334dp"
+        android:layout_height="123dp"
         android:ems="10"
         android:gravity="start|top"
         android:inputType="textMultiLine"
@@ -70,9 +69,8 @@
 
     <EditText
         android:id="@+id/editTextNumber"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_width="85dp"
+        android:layout_height="0dp"
         android:ems="10"
         android:inputType="number"
         app:layout_constraintStart_toStartOf="@+id/desc4"
