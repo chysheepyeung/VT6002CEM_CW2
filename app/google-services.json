@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "674644285848",
+    "project_id": "vtc-mobileapp-cw2",
+    "storage_bucket": "vtc-mobileapp-cw2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:674644285848:android:63e5b8ef6579b6cee673ed",
+        "android_client_info": {
+          "package_name": "com.example.traditionalarchitecturemaintain"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "674644285848-0hne1ajkjja80c2hdo6p387mucmrnd7r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCKlRN6Hyc0TD_LaW0S4u-cuZx5BE3EMHA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "674644285848-0hne1ajkjja80c2hdo6p387mucmrnd7r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
