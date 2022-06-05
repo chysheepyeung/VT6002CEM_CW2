@@ -1,5 +1,6 @@
 package com.example.traditionalarchitecturemaintain
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -13,5 +14,8 @@ class CreateOrderActivity : AppCompatActivity() {
 
     fun submitOrder(view: View){
         Toast.makeText(this, "Order added to the list successfully", Toast.LENGTH_SHORT).show()
+        var intent = Intent(this, MapsActivity::class.java)
+
+        startActivity(intent)
     }
 }
