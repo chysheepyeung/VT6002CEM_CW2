@@ -23,7 +23,7 @@
         android:ems="10"
         android:gravity="start|top"
         android:inputType="textMultiLine"
-        app:layout_constraintEnd_toStartOf="@+id/btnRemove"
+        app:layout_constraintEnd_toStartOf="@+id/btnLocation"
         app:layout_constraintStart_toStartOf="@+id/tvLocation"
         app:layout_constraintTop_toBottomOf="@+id/tvLocation" />
 
@@ -37,7 +37,7 @@
         app:layout_constraintTop_toBottomOf="@+id/etDesc" />
 
     <ImageButton
-        android:id="@+id/btnRemove"
+        android:id="@+id/btnLocation"
         android:layout_width="46dp"
         android:layout_height="45dp"
         android:layout_alignParentEnd="true"
@@ -47,6 +47,7 @@
         android:background="@android:color/transparent"
         android:gravity="end"
         android:onClick="findMyLocation"
+        android:tint="@color/quantum_googredA700"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvLocation"
         app:srcCompat="@android:drawable/ic_menu_mylocation" />
@@ -68,9 +69,11 @@
         android:id="@+id/tvDesc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
         android:text="Description of your maintenance"
-        tools:layout_editor_absoluteX="20dp"
-        tools:layout_editor_absoluteY="67dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
 
     <EditText
         android:id="@+id/etBudget"
@@ -97,11 +100,11 @@
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="Create Order"
         android:textSize="34sp"
-        app:layout_constraintBottom_toTopOf="@+id/tvDesc"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.056"
         app:layout_constraintStart_toStartOf="parent"
