@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
                 if(!documents.isEmpty){
                     var user = documents.documents[0].toObject<User>()
 
-                    textViewNoOrder.text = user!!.firstName + user!!.lastName
+                    textViewNoOrder.text = user!!.firstName + user.lastName
                 }
             }
             .addOnFailureListener { exception ->

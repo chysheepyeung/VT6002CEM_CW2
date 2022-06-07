@@ -60,8 +60,8 @@ class RegisterActivity : AppCompatActivity() {
                 Toast.makeText(this, "${user!!.uid}", Toast.LENGTH_LONG).show()
 
                 val userObj = User.create()
-                userObj.userId = user!!.uid
-                userObj.email = user!!.email
+                userObj.userId = user.uid
+                userObj.email = user.email
                 userObj.firstName = firstName
                 userObj.lastName = lastName
                 userObj.isAdmin = registerCode == "IAMADMIN"
@@ -75,7 +75,7 @@ class RegisterActivity : AppCompatActivity() {
 
                 val intent = Intent(this, MainActivity::class.java)
                 //intent.putExtra("userId", user!!.uid)
-                Statics.userId = user!!.uid
+                Statics.userId = user.uid
 
                 startActivity(intent)
 

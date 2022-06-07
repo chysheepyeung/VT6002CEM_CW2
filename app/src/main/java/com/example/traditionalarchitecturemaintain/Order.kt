@@ -15,7 +15,7 @@ class Order {
     var title: String? = null
     var description: String? = null
     var location: String? = null
-    var pic: Uri? = null
+    var pic: String? = null
     var status: Int? = 0  //0 - new, 1 - bidding, 2 - confirm, 3 - complete
 
 

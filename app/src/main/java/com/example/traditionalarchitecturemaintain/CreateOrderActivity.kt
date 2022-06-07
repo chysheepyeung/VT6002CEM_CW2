@@ -27,7 +27,6 @@ import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
-import kotlinx.coroutines.Dispatchers
 import java.io.File
 import java.io.IOException
 import java.lang.Exception
@@ -66,9 +65,9 @@ class CreateOrderActivity : AppCompatActivity() {
         selectedImage = findViewById(R.id.displayImageView)
         val cameraBtn = findViewById<Button>(R.id.cameraBtn)
         val galleryBtn = findViewById<Button>(R.id.galleryBtn)
-        storageReference = FirebaseStorage.getInstance().getReference()
+        storageReference = FirebaseStorage.getInstance().reference
 
-        _db = FirebaseDatabase.getInstance().getReference("order")
+
 
         cameraBtn.setOnClickListener{view -> takePhoto() }
 
@@ -217,12 +216,12 @@ class CreateOrderActivity : AppCompatActivity() {
         val location = etLocation.text.toString()
 
 
-        val order = Order.create()
+        val order:Order = Order.create()
         order.userId = Statics.userId
         order.title = title
         order.description = desc
         order.location = location
-        order.pic = photoURI
+        order.pic = photoURI.toString()
         order.status = 0
 
 //        _db.collection(Statics.FIREBASE_USER)
@@ -238,8 +237,11 @@ class CreateOrderActivity : AppCompatActivity() {
 //            .addOnFailureListener { exception ->
 //                Log.w("order", "Error getting documents: ", exception)
 //            }
+        _db = FirebaseDatabase.getInstance("https://vtc-mobileapp-cw2-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("order")
+        var newOrder = _db.push()
+        order.objectId = newOrder.key
+        newOrder.setValue(order)
 
-        createOrderToFB(order)
         Toast.makeText(this, "Order create successfully", Toast.LENGTH_LONG).show()
         finish()
     }
@@ -257,12 +259,7 @@ class CreateOrderActivity : AppCompatActivity() {
 //            Log.w("tag", "Error adding document", e)
 //        }
 
-        order.objectId = "1"
-        try{
-            _db.setValue(order)
-        }catch(e: Exception){
-            Log.d("Order Fail", "${e.toString()}")
-        }
+
 
     }
 
