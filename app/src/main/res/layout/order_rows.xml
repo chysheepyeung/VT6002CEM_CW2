@@ -8,17 +8,17 @@
 
     <ImageView
         android:id="@+id/iv_row_pic"
-        android:layout_width="85dp"
-        android:layout_height="85dp"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
         android:layout_margin="5dp"
-        android:background="@android:color/darker_gray"
+        app:srcCompat="@android:drawable/ic_menu_gallery"
         android:padding="8dp"
         android:scaleType="centerCrop" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
+        android:layout_marginLeft="5dp"
         android:layout_marginTop="4dp"
         android:orientation="vertical">
 
@@ -43,6 +43,14 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:text="Description"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_row_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Status"
             android:textSize="16sp" />
 
     </LinearLayout>

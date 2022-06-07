@@ -2,6 +2,7 @@ package com.example.traditionalarchitecturemaintain
 
 
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -16,8 +17,11 @@ import com.google.firebase.ktx.Firebase
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var  auth: FirebaseAuth
-
-
+    private var sharedPreferences: SharedPreferences? = null
+    companion object {
+        const val EMAIL_KEY  = "EMAIL_KEY"
+        const val PASSWORD_KEY = "PASSWORD_KEY"
+    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,9 +29,15 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_login)
-
-
-
+        var etEmail = findViewById<EditText>(R.id.editTextEmailAddress)
+        var etPassword = findViewById<EditText>(R.id.editTextPassword)
+        sharedPreferences   = getSharedPreferences("MySharedPreMain", MODE_PRIVATE)
+        if (sharedPreferences!!.contains(EMAIL_KEY)) {
+            etEmail!!.setText(sharedPreferences!!.getString(EMAIL_KEY, ""))
+        }
+        if (sharedPreferences!!.contains(PASSWORD_KEY)) {
+            etPassword!!.setText(sharedPreferences!!.getString(PASSWORD_KEY, ""))
+        }
 
         auth= FirebaseAuth.getInstance()
 
@@ -47,6 +57,11 @@ class LoginActivity : AppCompatActivity() {
             if(task.isSuccessful){
                 val user = auth.currentUser
                 Statics.userId = user!!.uid
+
+                val editor = sharedPreferences!!.edit()
+                editor.putString(EMAIL_KEY, email)
+                editor.putString(PASSWORD_KEY, password)
+                editor.commit()
 
                 var isAdmin: Boolean = false
 
