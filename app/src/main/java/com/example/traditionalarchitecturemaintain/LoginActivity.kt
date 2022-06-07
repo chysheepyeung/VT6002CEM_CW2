@@ -41,7 +41,8 @@ class LoginActivity : AppCompatActivity() {
         auth.signInWithEmailAndPassword(email,password).addOnCompleteListener { task ->
 
             if(task.isSuccessful){
-
+                val user = auth.currentUser
+                Statics.userId = user!!.uid
                 val intent= Intent(this, MainActivity::class.java)
 
                 startActivity(intent)

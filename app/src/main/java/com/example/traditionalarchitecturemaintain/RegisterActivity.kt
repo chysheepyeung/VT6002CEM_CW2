@@ -74,7 +74,8 @@ class RegisterActivity : AppCompatActivity() {
 
 
                 val intent = Intent(this, MainActivity::class.java)
-                intent.putExtra("userId", user!!.uid)
+                //intent.putExtra("userId", user!!.uid)
+                Statics.userId = user!!.uid
 
                 startActivity(intent)
 
