@@ -8,13 +8,13 @@
 
 
     <TextView
-        android:id="@+id/tvBudget"
+        android:id="@+id/tvOrderTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
-        android:text="Budget"
-        app:layout_constraintStart_toStartOf="@+id/etLocation"
-        app:layout_constraintTop_toBottomOf="@+id/etLocation" />
+        android:layout_marginTop="20dp"
+        android:text="Title"
+        app:layout_constraintStart_toStartOf="@+id/tvTitle"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
 
     <EditText
         android:id="@+id/etLocation"
@@ -31,7 +31,7 @@
         android:id="@+id/tvLocation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="20dp"
         android:text="Location"
         app:layout_constraintStart_toStartOf="@+id/etDesc"
         app:layout_constraintTop_toBottomOf="@+id/etDesc" />
@@ -47,7 +47,7 @@
         android:background="@android:color/transparent"
         android:gravity="end"
         android:onClick="findMyLocation"
-        android:tint="@color/quantum_googredA700"
+        app:tint="@color/quantum_googredA700"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvLocation"
         app:srcCompat="@android:drawable/ic_menu_mylocation" />
@@ -55,7 +55,7 @@
     <EditText
         android:id="@+id/etDesc"
         android:layout_width="0dp"
-        android:layout_height="123dp"
+        android:layout_height="60dp"
         android:layout_marginEnd="8dp"
         android:ems="10"
         android:gravity="start|top"
@@ -69,32 +69,33 @@
         android:id="@+id/tvDesc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="20dp"
         android:text="Description of your maintenance"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
+        app:layout_constraintStart_toStartOf="@+id/tvOrderTitle"
+        app:layout_constraintTop_toBottomOf="@+id/etTitle" />
 
     <EditText
-        android:id="@+id/etBudget"
+        android:id="@+id/etTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="@+id/etDesc"
-        app:layout_constraintStart_toStartOf="@+id/tvBudget"
-        app:layout_constraintTop_toBottomOf="@+id/tvBudget" />
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/tvOrderTitle"
+        app:layout_constraintTop_toBottomOf="@+id/tvOrderTitle" />
 
     <Button
         android:id="@+id/buttonSubmit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="80dp"
+        android:layout_marginBottom="32dp"
         android:onClick="submitOrder"
         android:text="Submit"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -109,5 +110,38 @@
         app:layout_constraintHorizontal_bias="0.056"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/displayImageView"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="@+id/etLocation"
+        app:layout_constraintTop_toBottomOf="@+id/etLocation"
+        app:srcCompat="@android:drawable/ic_menu_gallery" />
+
+    <Button
+        android:id="@+id/cameraBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="40dp"
+        android:text="Camera"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/displayImageView"
+        app:layout_constraintTop_toTopOf="@+id/displayImageView" />
+
+    <Button
+        android:id="@+id/galleryBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="40dp"
+        android:text="Gallery"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/cameraBtn"
+        app:layout_constraintTop_toBottomOf="@+id/cameraBtn" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
