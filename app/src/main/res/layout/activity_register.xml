@@ -11,88 +11,89 @@
         android:layout_width="237dp"
         android:layout_height="49dp"
         android:layout_marginStart="12dp"
-        android:layout_marginTop="104dp"
-        android:layout_marginBottom="41dp"
+        android:layout_marginTop="30dp"
         android:ems="10"
         android:hint="First Name"
         android:inputType="textPersonName"
         android:padding="10dp"
         android:textColor="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/editTextLastName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.387" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/editTextLastName"
         android:layout_width="237dp"
         android:layout_height="49dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="41dp"
+        android:layout_marginTop="30dp"
         android:ems="10"
         android:hint="Last Name"
         android:inputType="textPersonName"
         android:padding="10dp"
         android:textColor="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/editTextEmailAddress"
         app:layout_constraintStart_toStartOf="@+id/editTextFirstName"
         app:layout_constraintTop_toBottomOf="@+id/editTextFirstName" />
+
+    <EditText
+        android:id="@+id/editTextRegisterCode"
+        android:layout_width="237dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="30dp"
+        android:ems="10"
+        android:hint="RegisterCode"
+        android:inputType="textPersonName"
+        android:padding="10dp"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="@+id/editTextPassword"
+        app:layout_constraintTop_toBottomOf="@+id/editTextPassword" />
 
     <EditText
         android:id="@+id/editTextEmailAddress"
         android:layout_width="237dp"
         android:layout_height="49dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="41dp"
+        android:layout_marginTop="30dp"
         android:ems="10"
         android:hint="Email"
         android:inputType="textEmailAddress"
         android:padding="10dp"
         android:textColor="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/editTextPassword"
         app:layout_constraintStart_toStartOf="@+id/editTextLastName"
         app:layout_constraintTop_toBottomOf="@+id/editTextLastName" />
+
 
     <EditText
         android:id="@+id/editTextPassword"
         android:layout_width="237dp"
         android:layout_height="49dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="41dp"
+        android:layout_marginTop="30dp"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
         android:padding="10dp"
         android:textColor="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/buttonRegister"
         app:layout_constraintStart_toStartOf="@+id/editTextEmailAddress"
         app:layout_constraintTop_toBottomOf="@+id/editTextEmailAddress" />
-
-
 
     <Button
         android:id="@+id/buttonRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="10dp"
-        android:text="REGISTER"
+        android:layout_marginTop="60dp"
         android:onClick="register"
+        android:text="REGISTER"
         android:textColor="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextRegisterCode" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="366dp"
         android:layout_height="56dp"
-        android:layout_marginBottom="170dp"
+        android:layout_marginTop="30dp"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.488"
         app:layout_constraintStart_toStartOf="parent"
@@ -114,8 +115,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="2.6"
-            android:text="Login"
             android:onClick="goToLogin"
+            android:text="Login"
             android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold" />
