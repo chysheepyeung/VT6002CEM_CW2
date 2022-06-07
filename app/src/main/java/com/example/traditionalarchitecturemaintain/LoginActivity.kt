@@ -4,10 +4,14 @@ package com.example.traditionalarchitecturemaintain
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.ktx.toObject
+import com.google.firebase.ktx.Firebase
 
 class LoginActivity : AppCompatActivity() {
 
@@ -43,8 +47,29 @@ class LoginActivity : AppCompatActivity() {
             if(task.isSuccessful){
                 val user = auth.currentUser
                 Statics.userId = user!!.uid
-                val intent= Intent(this, MainActivity::class.java)
 
+                var isAdmin: Boolean = false
+
+                val db = Firebase.firestore
+                db.collection(Statics.FIREBASE_USER)
+                    .whereEqualTo("userId", user!!.uid)
+                    .get()
+                    .addOnSuccessListener { documents ->
+                        if(!documents.isEmpty){
+                            var user = documents.documents[0].toObject<User>()
+                            isAdmin = user!!.isAdmin
+                        }
+                    }
+                    .addOnFailureListener { exception ->
+                        Log.w("order", "Error getting documents: ", exception)
+                    }
+
+                val intent= Intent(this, MainActivity::class.java)
+                if(isAdmin){
+                    intent.putExtra("isAdmin", true)
+                }else{
+                    intent.putExtra("isAdmin", false)
+                }
                 startActivity(intent)
 
                 finish()
