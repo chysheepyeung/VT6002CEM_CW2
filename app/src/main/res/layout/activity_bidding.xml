@@ -43,7 +43,7 @@
     <TextView
         android:id="@+id/tv_bidding_desc"
         android:layout_width="0dp"
-        android:layout_height="117dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="Desc"
         android:textSize="16sp"
@@ -58,8 +58,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:ems="10"
-        android:inputType="text"
-        android:text="Budget"
+        android:hint="Budget"
+        android:inputType="number"
         android:visibility="gone"
         app:layout_constraintStart_toStartOf="@+id/tv_bidding_location"
         app:layout_constraintTop_toBottomOf="@+id/tv_bidding_location" />
@@ -85,4 +85,5 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_bidding_budget" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

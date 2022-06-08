@@ -17,7 +17,7 @@ class OrderAdapter(context: Context, orderList: MutableList<Order>) : BaseAdapte
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
 
-        val objectId: String = _orderList.get(position).objectId as String
+        val orderId: String = _orderList.get(position).orderId as String
         val title: String = _orderList.get(position).title as String
         val location: String = _orderList.get(position).location as String
         val description:String = _orderList.get(position).description as String

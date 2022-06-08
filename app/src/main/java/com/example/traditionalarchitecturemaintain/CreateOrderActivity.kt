@@ -239,7 +239,7 @@ class CreateOrderActivity : AppCompatActivity() {
 //            }
         _db = FirebaseDatabase.getInstance("https://vtc-mobileapp-cw2-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("order")
         var newOrder = _db.push()
-        order.objectId = newOrder.key
+        order.orderId = newOrder.key
         newOrder.setValue(order)
 
         Toast.makeText(this, "Order create successfully", Toast.LENGTH_LONG).show()

@@ -53,16 +53,21 @@ class MainActivity : AppCompatActivity() {
 
         var listViewOrder = findViewById<ListView>(R.id.listviewOrder)
         listViewOrder.setOnItemClickListener { parent, view, position, id ->
-            Log.d("order click", _orderList!![position].objectId.toString())
-            var intent: Intent
+            Log.d("bidding", _orderList!![position].orderId.toString())
+
             if(Statics.isAdmin){
-                intent = Intent(this, BiddingActivity::class.java)
-                intent.putExtra("orderId", _orderList!![position].objectId.toString())
+                var intent = Intent(this, BiddingActivity::class.java)
+
+                Log.d("bidding", "set intent")
+                intent.putExtra("orderId", _orderList!![position].orderId.toString())
                 intent.putExtra("title", _orderList!![position].title.toString())
                 intent.putExtra("location", _orderList!![position].location.toString())
                 intent.putExtra("desc", _orderList!![position].description.toString())
                 intent.putExtra("pic", _orderList!![position].pic.toString())
+
+                Log.d("bidding", "set extra")
                 startActivity(intent)
+                Log.d("bidding", "start bidding")
             }else{
                 //todo user choose bidding activity
                 //intent = Intent(this, SelectCompanyActivity::class.java)
