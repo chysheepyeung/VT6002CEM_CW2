@@ -6,4 +6,5 @@ object Statics {
 
     var userId:String = ""
     var userName:String = ""
+    var isAdmin: Boolean = false
 }

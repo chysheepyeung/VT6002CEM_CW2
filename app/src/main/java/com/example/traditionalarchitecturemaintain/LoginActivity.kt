@@ -13,6 +13,11 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 
 class LoginActivity : AppCompatActivity() {
 
@@ -63,31 +68,33 @@ class LoginActivity : AppCompatActivity() {
                 editor.putString(PASSWORD_KEY, password)
                 editor.commit()
 
-                var isAdmin: Boolean = false
-
-                val db = Firebase.firestore
-                db.collection(Statics.FIREBASE_USER)
-                    .whereEqualTo("userId", user!!.uid)
-                    .get()
-                    .addOnSuccessListener { documents ->
-                        if(!documents.isEmpty){
-                            var user = documents.documents[0].toObject<User>()
-                            isAdmin = user!!.isAdmin
-                        }
-                    }
-                    .addOnFailureListener { exception ->
-                        Log.w("order", "Error getting documents: ", exception)
-                    }
 
                 val intent= Intent(this, MainActivity::class.java)
-                if(isAdmin){
-                    intent.putExtra("isAdmin", true)
-                }else{
-                    intent.putExtra("isAdmin", false)
-                }
-                startActivity(intent)
 
-                finish()
+                val db = Firebase.firestore
+                GlobalScope.launch(Dispatchers.IO) {
+                    val userDocuments = db.collection(Statics.FIREBASE_USER)
+                        .whereEqualTo("userId", user!!.uid)
+                        .get().await()
+
+                    withContext(Dispatchers.Main){
+                        var user = userDocuments.documents[0].toObject<User>()
+                        Statics.isAdmin = user!!.isAdmin
+
+//                        if(isAdmin){
+//                            intent.putExtra("isAdmin", true)
+//                        }else{
+//                            intent.putExtra("isAdmin", false)
+//                        }
+
+                        startActivity(intent)
+                        finish()
+                    }
+                }
+
+//                Toast.makeText(this, "$isAdmin", Toast.LENGTH_SHORT)
+
+
 
             }
 

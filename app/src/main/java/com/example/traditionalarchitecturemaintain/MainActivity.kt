@@ -5,6 +5,7 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Button
 import android.widget.ListView
 import android.widget.TextView
 import android.widget.Toast
@@ -39,11 +40,16 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val orderButton = findViewById<Button>(R.id.addOrder)
+        if(Statics.isAdmin){
+            orderButton.visibility = View.GONE
+        }
+
         val _db = FirebaseDatabase.getInstance("https://vtc-mobileapp-cw2-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("order")
-        Log.d("loadTaskList", _db.toString())
+
         _orderList = mutableListOf()
         _adapter = OrderAdapter(this, _orderList!!)
-        Log.d("loadTaskList", _adapter.toString())
+
 
         var listViewOrder = findViewById<ListView>(R.id.listviewOrder)
         listViewOrder.setOnItemClickListener { parent, view, position, id ->
