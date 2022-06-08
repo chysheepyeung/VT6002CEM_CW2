@@ -74,8 +74,9 @@ class RegisterActivity : AppCompatActivity() {
 
 
                 val intent = Intent(this, MainActivity::class.java)
-                //intent.putExtra("userId", user!!.uid)
                 Statics.userId = user.uid
+                Statics.isAdmin = userObj.isAdmin
+                Statics.userName = "$firstName $lastName"
 
                 startActivity(intent)
 

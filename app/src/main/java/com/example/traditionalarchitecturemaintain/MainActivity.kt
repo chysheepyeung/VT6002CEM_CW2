@@ -53,8 +53,22 @@ class MainActivity : AppCompatActivity() {
 
         var listViewOrder = findViewById<ListView>(R.id.listviewOrder)
         listViewOrder.setOnItemClickListener { parent, view, position, id ->
-            Log.d("loadTaskList", _orderList!![position].objectId.toString())
-            //todo newActivity
+            Log.d("order click", _orderList!![position].objectId.toString())
+            var intent: Intent
+            if(Statics.isAdmin){
+                intent = Intent(this, BiddingActivity::class.java)
+                intent.putExtra("orderId", _orderList!![position].objectId.toString())
+                intent.putExtra("title", _orderList!![position].title.toString())
+                intent.putExtra("location", _orderList!![position].location.toString())
+                intent.putExtra("desc", _orderList!![position].description.toString())
+                intent.putExtra("pic", _orderList!![position].pic.toString())
+                startActivity(intent)
+            }else{
+                //todo user choose bidding activity
+                //intent = Intent(this, SelectCompanyActivity::class.java)
+                //intent.putExtra("orderId", _orderList!![position].objectId.toString())
+                //startActivity(intent)
+            }
         }
         listViewOrder!!.adapter = _adapter
 
@@ -64,14 +78,24 @@ class MainActivity : AppCompatActivity() {
     private fun loadOrderList(dataSnapshot: DataSnapshot){
         Log.d("loadTaskList", "loadTaskList")
         _orderList!!.clear()
+
         for(orderObj in dataSnapshot.children){
             var order = orderObj.getValue(Order::class.java)
             Log.d("loadTaskList", order.toString())
 
-            _orderList!!.add(order!!)
+            if(Statics.isAdmin){
+                _orderList!!.add(order!!)
+            }else{
+                if(order!!.userId == Statics.userId){
+                    _orderList!!.add(order!!)
+                }
+            }
+
         }
         _adapter.notifyDataSetChanged()
     }
+
+
 
     fun goToCreateOrder(view: View){
         val intent= Intent(this,CreateOrderActivity::class.java)

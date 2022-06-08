@@ -78,24 +78,15 @@ class LoginActivity : AppCompatActivity() {
                         .get().await()
 
                     withContext(Dispatchers.Main){
-                        var user = userDocuments.documents[0].toObject<User>()
-                        Statics.isAdmin = user!!.isAdmin
-
-//                        if(isAdmin){
-//                            intent.putExtra("isAdmin", true)
-//                        }else{
-//                            intent.putExtra("isAdmin", false)
-//                        }
-
-                        startActivity(intent)
-                        finish()
+                        if(!userDocuments.isEmpty && userDocuments.documents.isNotEmpty()){
+                            var user = userDocuments.documents[0].toObject<User>()
+                            Statics.isAdmin = user!!.isAdmin
+                            Statics.userName = "${user!!.firstName.toString()} ${user!!.lastName.toString()}"
+                            startActivity(intent)
+                            finish()
+                        }
                     }
                 }
-
-//                Toast.makeText(this, "$isAdmin", Toast.LENGTH_SHORT)
-
-
-
             }
 
         }.addOnFailureListener { exception ->
