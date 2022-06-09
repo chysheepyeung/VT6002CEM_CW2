@@ -12,5 +12,6 @@ class Order {
     var location: String? = null
     var pic: String? = null
     var status: Int? = 0  //0 - new, 1 - bidding, 2 - confirm, 3 - complete
+    var companyId: String? = null
 
 }

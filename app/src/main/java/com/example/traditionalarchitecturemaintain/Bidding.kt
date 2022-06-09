@@ -8,4 +8,6 @@ class Bidding {
     var orderId: String? = null
     var companyId: String? = null
     var budget: Int = 0
+    var isAccept: Boolean = false
+    var companyName:String? = null
 }

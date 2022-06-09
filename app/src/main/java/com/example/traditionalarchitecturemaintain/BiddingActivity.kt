@@ -72,6 +72,7 @@ class BiddingActivity : AppCompatActivity() {
         bid.budget = budget.toInt()
         bid.companyId = Statics.userId
         bid.orderId = orderId
+        bid.companyName = Statics.userName
         newBid.setValue(bid)
 
         GlobalScope.launch(Dispatchers.IO){
