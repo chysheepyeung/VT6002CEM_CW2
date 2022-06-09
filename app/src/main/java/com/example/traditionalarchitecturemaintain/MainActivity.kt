@@ -88,7 +88,9 @@ class MainActivity : AppCompatActivity() {
             Log.d("loadTaskList", order.toString())
 
             if(Statics.isAdmin){
-                _orderList!!.add(order!!)
+                if(order!!.status!! < 2 || order.companyId == Statics.userId){
+                    _orderList!!.add(order!!)
+                }
             }else{
                 if(order!!.userId == Statics.userId){
                     _orderList!!.add(order!!)
@@ -96,7 +98,17 @@ class MainActivity : AppCompatActivity() {
             }
 
         }
-
+        val tvnoOrder = findViewById<TextView>(R.id.tv_noOrder)
+        if(_orderList!!.isEmpty()){
+            if(Statics.isAdmin){
+                tvnoOrder.text = "There is no order available now"
+            }else{
+                tvnoOrder.text = "You have not create order yet"
+            }
+            tvnoOrder.visibility = View.VISIBLE
+        }else{
+            tvnoOrder.visibility = View.GONE
+        }
         _orderList!!.reverse()
         _adapter.notifyDataSetChanged()
     }

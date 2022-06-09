@@ -3,6 +3,7 @@ package com.example.traditionalarchitecturemaintain
 import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
+import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -56,8 +57,8 @@ class CompanyAdapter(context: Context, companyList: MutableList<Bidding>) : Base
         listRowHolder.budget.text = "Cost: $$budget"
         if(orderAccept && !isAccept){
             listRowHolder.btnAccept.visibility = View.GONE
-        }else if(!orderAccept && !isAccept){
-            listRowHolder.btnAccept.setOnClickListener{
+        }else if(!orderAccept && !isAccept) {
+            listRowHolder.btnAccept.setOnClickListener {
                 val dialogClickListener =
                     DialogInterface.OnClickListener { dialog, which ->
                         when (which) {
@@ -73,6 +74,9 @@ class CompanyAdapter(context: Context, companyList: MutableList<Bidding>) : Base
                     .setNegativeButton("No", dialogClickListener).show()
             }
         }
+//        else if(orderAccept && isAccept){
+//            view.setBackgroundColor(Color.parseColor("#4CAF50"))
+//        }
 
 
         Log.d("loadCompanyList", listRowHolder.toString())
