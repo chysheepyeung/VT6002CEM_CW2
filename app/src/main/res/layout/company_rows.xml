@@ -33,7 +33,7 @@
     </LinearLayout>
 
     <ImageButton
-        android:id="@+id/btnRemove"
+        android:id="@+id/btn_company_accept"
         android:layout_width="69dp"
         android:layout_height="68dp"
         android:layout_alignParentEnd="true"
@@ -41,6 +41,7 @@
         android:layout_centerVertical="true"
         android:background="@android:color/transparent"
         android:gravity="end"
-        app:srcCompat="@android:drawable/checkbox_on_background" />
+        android:scaleType="centerInside"
+        app:srcCompat="@drawable/accept" />
 
 </LinearLayout>
