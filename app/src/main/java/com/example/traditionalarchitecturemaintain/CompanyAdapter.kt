@@ -19,7 +19,7 @@ import kotlinx.coroutines.withContext
 class CompanyAdapter(context: Context, companyList: MutableList<Bidding>) : BaseAdapter() {
     private val _inflater: LayoutInflater = LayoutInflater.from(context)
     private var _companyList = companyList
-//    private var _rowListener: OrderRowListener = context as OrderRowListener
+    private var _rowListener: CompanyRowListener = context as CompanyRowListener
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
 
@@ -62,27 +62,7 @@ class CompanyAdapter(context: Context, companyList: MutableList<Bidding>) : Base
                     DialogInterface.OnClickListener { dialog, which ->
                         when (which) {
                             DialogInterface.BUTTON_POSITIVE -> {
-                                GlobalScope.launch(Dispatchers.IO) {
-                                    val _db = FirebaseDatabase.getInstance("https://vtc-mobileapp-cw2-default-rtdb.asia-southeast1.firebasedatabase.app/")
-                                    val targetOrder = _db.getReference(Statics.FIREBASE_ORDER).child(orderId)
-                                    val targetBidding = _db.getReference(Statics.FIREBASE_BIDDING).child(biddingId)
-                                    val orderCollection = targetOrder.get().await()
-                                    val biddingCollection = targetBidding.get().await()
-
-                                    withContext(Dispatchers.Main){
-                                        var order = orderCollection.getValue(Order::class.java)
-                                        var bidding = biddingCollection.getValue(Bidding::class.java)
-
-                                        order!!.status = 2
-                                        order!!.companyId = companyId
-                                        bidding!!.isAccept = true
-
-                                        targetOrder.setValue(order)
-                                        targetBidding.setValue(bidding)
-
-
-                                    }
-                                }
+                                _rowListener.onCompanyAccept(orderId, biddingId, companyId)
                             }
                             DialogInterface.BUTTON_NEGATIVE -> {}
                         }

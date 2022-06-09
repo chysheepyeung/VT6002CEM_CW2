@@ -18,6 +18,9 @@
         android:theme="@style/Theme.TraditionalArchitectureMaintain"
         tools:targetApi="31">
         <activity
+            android:name=".CompanyActivity"
+            android:exported="false" />
+        <activity
             android:name=".BiddingActivity"
             android:exported="false" />
         <!--

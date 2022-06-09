@@ -17,9 +17,9 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
-    var isAdmin: String? = null
     var _orderList: MutableList<Order>? = null
     lateinit var _adapter: OrderAdapter
 
@@ -69,10 +69,9 @@ class MainActivity : AppCompatActivity() {
                 startActivity(intent)
                 Log.d("bidding", "start bidding")
             }else{
-                //todo user choose bidding activity
-                //intent = Intent(this, SelectCompanyActivity::class.java)
-                //intent.putExtra("orderId", _orderList!![position].objectId.toString())
-                //startActivity(intent)
+                var intent = Intent(this, CompanyActivity::class.java)
+                intent.putExtra("orderId", _orderList!![position].orderId.toString())
+                startActivity(intent)
             }
         }
         listViewOrder!!.adapter = _adapter
@@ -97,6 +96,8 @@ class MainActivity : AppCompatActivity() {
             }
 
         }
+
+        _orderList!!.reverse()
         _adapter.notifyDataSetChanged()
     }
 
