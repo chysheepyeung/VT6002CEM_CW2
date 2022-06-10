@@ -64,6 +64,7 @@ class MainActivity : AppCompatActivity() {
                 intent.putExtra("location", _orderList!![position].location.toString())
                 intent.putExtra("desc", _orderList!![position].description.toString())
                 intent.putExtra("pic", _orderList!![position].pic.toString())
+                intent.putExtra("status", _orderList!![position].status)
 
                 Log.d("bidding", "set extra")
                 startActivity(intent)

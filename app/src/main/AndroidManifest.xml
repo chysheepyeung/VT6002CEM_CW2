@@ -3,6 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.traditionalarchitecturemaintain">
 
+
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -17,6 +22,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TraditionalArchitectureMaintain"
         tools:targetApi="31">
+        <activity
+            android:name=".DirectionActivity"
+            android:exported="false" />
         <activity
             android:name=".CompanyActivity"
             android:exported="false" />
@@ -36,7 +44,7 @@
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="${MAPS_API_KEY}" />
+            android:value="AIzaSyCfjmmfDobKm_PDpCGHNC7dUnjje1e3Qns" />
 
         <activity
             android:name=".MapsActivity"

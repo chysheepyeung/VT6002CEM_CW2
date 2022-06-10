@@ -1,5 +1,6 @@
 package com.example.traditionalarchitecturemaintain
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -27,6 +28,7 @@ class BiddingActivity : AppCompatActivity() {
         val location:String = intent.getStringExtra("location").toString()
         val desc:String = intent.getStringExtra("desc").toString()
         val pic:String = intent.getStringExtra("pic").toString()
+        val status:Int = intent.getIntExtra("status", 0)
         Log.d("bidding", "get Extra")
 
         val tvTitle = findViewById<TextView>(R.id.tv_bidding_title)
@@ -36,6 +38,7 @@ class BiddingActivity : AppCompatActivity() {
         val etBudget = findViewById<EditText>(R.id.et_bidding_budget)
         val btnApply = findViewById<Button>(R.id.btn_bidding_apply)
         val btnSend = findViewById<Button>(R.id.btn_bidding_send)
+        val btnDirect = findViewById<Button>(R.id.btn_bidding_direct)
 
         Log.d("bidding", "getView")
 
@@ -47,17 +50,30 @@ class BiddingActivity : AppCompatActivity() {
         Picasso.get().load(pic).into(ivPic)
         Log.d("bidding", "set Pic")
 
+        if(status >= 2){
+            btnApply.visibility = View.GONE
+            btnDirect.visibility = View.VISIBLE
+        }
+
+        Log.d("bidding", "set btnApply Onclick")
         btnApply.setOnClickListener{
             etBudget.visibility = View.VISIBLE
             btnSend.visibility = View.VISIBLE
             btnApply.visibility = View.GONE
         }
 
-        Log.d("bidding", "set Onclick1")
+        Log.d("bidding", "set btnSend Onclick")
         btnSend.setOnClickListener{
             SendBidding()
         }
-        Log.d("bidding", "set Onclick2")
+
+        Log.d("bidding", "set btnDirect Onclick")
+        btnDirect.setOnClickListener{
+            val intent = Intent(this, DirectionActivity::class.java)
+
+            intent.putExtra("location", location)
+            startActivity(intent)
+        }
     }
 
     private fun SendBidding(){

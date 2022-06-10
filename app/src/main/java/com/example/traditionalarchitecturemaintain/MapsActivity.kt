@@ -94,7 +94,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         // [START_EXCLUDE silent]
         // Construct a PlacesClient
-        Places.initialize(applicationContext, BuildConfig.MAPS_API_KEY)
+        Places.initialize(applicationContext, "AIzaSyCfjmmfDobKm_PDpCGHNC7dUnjje1e3Qns")
         placesClient = Places.createClient(this)
 
         // Construct a FusedLocationProviderClient.
@@ -418,7 +418,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     companion object {
         private val TAG = MapsActivity::class.java.simpleName
         private const val DEFAULT_ZOOM = 15
-        private const val PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1
+        const val PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1
 
         // Keys for storing activity state.
         // [START maps_current_place_state_keys]
