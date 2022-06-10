@@ -126,6 +126,7 @@ class BiddingActivity : AppCompatActivity() {
                 var orderObj = order.getValue(Order::class.java)
                 orderObj!!.status = 3
                 orderQuery.setValue(orderObj)
+                finish()
             }
         }
 
