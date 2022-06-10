@@ -39,6 +39,7 @@ class BiddingActivity : AppCompatActivity() {
         val btnApply = findViewById<Button>(R.id.btn_bidding_apply)
         val btnSend = findViewById<Button>(R.id.btn_bidding_send)
         val btnDirect = findViewById<Button>(R.id.btn_bidding_direct)
+        val btnComplete = findViewById<Button>(R.id.btn_bidding_complete)
 
         Log.d("bidding", "getView")
 
@@ -50,10 +51,14 @@ class BiddingActivity : AppCompatActivity() {
         Picasso.get().load(pic).into(ivPic)
         Log.d("bidding", "set Pic")
 
-        if(status >= 2){
+        if(status == 2){
             btnApply.visibility = View.GONE
             btnDirect.visibility = View.VISIBLE
+            btnComplete.visibility = View.VISIBLE
+        }else if(status == 3){
+            btnApply.visibility = View.GONE
         }
+
 
         Log.d("bidding", "set btnApply Onclick")
         btnApply.setOnClickListener{
@@ -73,6 +78,11 @@ class BiddingActivity : AppCompatActivity() {
 
             intent.putExtra("location", location)
             startActivity(intent)
+        }
+
+        Log.d("bidding", "set brnComplete Onclick")
+        btnComplete.setOnClickListener{
+            Complete()
         }
     }
 
@@ -103,5 +113,21 @@ class BiddingActivity : AppCompatActivity() {
                 finish()
             }
         }
+    }
+
+    private fun Complete(){
+        GlobalScope.launch(Dispatchers.IO) {
+            val orderQuery = FirebaseDatabase.getInstance("https://vtc-mobileapp-cw2-default-rtdb.asia-southeast1.firebasedatabase.app/")
+                .getReference(Statics.FIREBASE_ORDER)
+                .child(orderId)
+            val order = orderQuery.get().await()
+
+            withContext(Dispatchers.Main){
+                var orderObj = order.getValue(Order::class.java)
+                orderObj!!.status = 3
+                orderQuery.setValue(orderObj)
+            }
+        }
+
     }
 }
