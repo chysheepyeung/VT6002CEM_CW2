@@ -48,11 +48,12 @@ class DirectionActivity : AppCompatActivity() {
     private var cameraPosition: CameraPosition? = null
     var destination:LatLng? = null
     var origin:LatLng? = null
+    var location:String? = null
     @SuppressLint("MissingPermission")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_direction)
-        val location = intent.getStringExtra("location")
+        location = intent.getStringExtra("location")
 
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
@@ -62,16 +63,22 @@ class DirectionActivity : AppCompatActivity() {
         }
         getLocationPermission()
 
+        PrepareMap()
+    }
+
+    @SuppressLint("MissingPermission")
+    private fun PrepareMap(){
         GlobalScope.launch(Dispatchers.IO) {
             Log.d("GoogleMap", "before getDeviceLocation")
             if (locationPermissionGranted) {
+
                 Log.d("GoogleMap", "location permission grant.")
                 val locationResult = fusedLocationProviderClient.lastLocation.await()
 
                 Log.d("GoogleMap map", "location Result success.")
                 // Set the map's camera position to the current location of the device.
                 lastKnownLocation = locationResult
-
+                Thread.sleep(2000)
                 val getLocationUrl = getDestinationLocationURL(location!!)
                 GetDestination(getLocationUrl).execute()
                 withContext(Dispatchers.Main) {
@@ -156,6 +163,8 @@ class DirectionActivity : AppCompatActivity() {
                 if (grantResults.isNotEmpty() &&
                     grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     locationPermissionGranted = true
+
+                    PrepareMap()
                 }
             }
             else -> super.onRequestPermissionsResult(requestCode, permissions, grantResults)

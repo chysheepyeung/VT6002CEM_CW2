@@ -74,10 +74,6 @@ class CompanyAdapter(context: Context, companyList: MutableList<Bidding>) : Base
                     .setNegativeButton("No", dialogClickListener).show()
             }
         }
-//        else if(orderAccept && isAccept){
-//            view.setBackgroundColor(Color.parseColor("#4CAF50"))
-//        }
-
 
         Log.d("loadCompanyList", listRowHolder.toString())
 
