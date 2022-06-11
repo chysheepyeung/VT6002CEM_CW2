@@ -1,4 +1,4 @@
-﻿# The Canine Shelter (Frontend), Conventry API Assignment
+﻿# Traditional Architecture Maintain, Conventry Mobile App Assignment
 
 ## Introduce
 
