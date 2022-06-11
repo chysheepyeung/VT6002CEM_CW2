@@ -3,7 +3,9 @@ package com.example.traditionalarchitecturemaintain
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.ListView
+import android.widget.TextView
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -56,6 +58,12 @@ class CompanyActivity : AppCompatActivity(), CompanyRowListener {
             if(bid!!.orderId == orderId){
                 _companyList!!.add(bid)
             }
+        }
+        val tvnoCompany = findViewById<TextView>(R.id.tv_noCompany)
+        if(_companyList!!.isEmpty()){
+            tvnoCompany.visibility = View.VISIBLE
+        }else{
+            tvnoCompany.visibility = View.GONE
         }
         _companyList!!.reverse()
         _adapter.notifyDataSetChanged()
